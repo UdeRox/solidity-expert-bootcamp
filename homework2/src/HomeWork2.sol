@@ -27,10 +27,15 @@ contract HomeWork2 {
         dynamicArray = _iniDynamicdArray;
     }
 
-    //delete function
-    // items are choose randomly
-    // after deleting no gaps
-    // opt gas
+    function removeIndex(uint256 _removeIndex) public {
+        uint256 lastIndex = getArrayLength() - 1;
+        if (_removeIndex > lastIndex) revert IndexOutBoundError();
+        uint256 item = dynamicArray[_removeIndex];
+        dynamicArray[_removeIndex] = dynamicArray[lastIndex];
+        dynamicArray.pop();
+        emit IndexItemRemoved(_removeIndex, item);
+    }
+
     function deleteItem(uint256 _deleteItem) public {
         uint256 indexFound = findIndexOfItem(_deleteItem);
         if (indexFound != 0) removeIndex(indexFound);
@@ -43,15 +48,6 @@ contract HomeWork2 {
             if (dynamicArray[i] == _item) return i;
         }
         revert ItemNotFoundError();
-    }
-
-    function removeIndex(uint256 _removeIndex) public {
-        uint256 lastIndex = getArrayLength() - 1;
-        if (_removeIndex > lastIndex) revert IndexOutBoundError();
-        uint256 item = dynamicArray[_removeIndex];
-        dynamicArray[_removeIndex] = dynamicArray[lastIndex];
-        dynamicArray.pop();
-        emit IndexItemRemoved(_removeIndex, item);
     }
 
     function setDynamicArray(uint[] memory _dynamicArray) external {
