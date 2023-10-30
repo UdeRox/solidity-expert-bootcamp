@@ -6,4 +6,6 @@ optimizer = true
 optimizer_runs = 2000
 solc = "0.8.20"
 ffi=true
+[fuzz]
+runs=1000
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
