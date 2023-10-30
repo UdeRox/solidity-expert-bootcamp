@@ -25,5 +25,8 @@ anvil :; anvil -m 'test test test test test test test test test test test junk' 
 
 NETWORK_ARGS := --rpc-url http://localhost:8545 --private-key $(DEFAULT_ANVIL_KEY) --broadcast
 
-deploy:
+deployLevel0:
 	@forge script script/DeployLevel_0.s.sol --rpc-url $(SEPOLIA_RPC_URL) --private-key $(P_KEY)  --broadcast 
+
+deployLevel1:
+	@forge script script/DeployLevel_1.s.sol --rpc-url $(SEPOLIA_RPC_URL) --private-key $(P_KEY)  --broadcast 	
